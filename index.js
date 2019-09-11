@@ -4,6 +4,15 @@
 
 import {AppRegistry} from 'react-native';
 import App from './App';
+
+import horizontalView from './view/component/horizontalView';
+
+import login from './view/login/login';
+import home from './view/home';
+import detail from './view/detailNovel';
+
+// import mainNavigator from './view/navigationAdapter/navigatorMain';
+
 import {name as appName} from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
