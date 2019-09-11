@@ -39,7 +39,7 @@ export default class detailNovel extends Component {
         <ImageBackground source={{uri:'https://get.wallhere.com/photo/white-black-monochrome-dark-texture-atmosphere-light-background-line-surface-darkness-spots-computer-wallpaper-black-and-white-monochrome-photography-701877.jpg'}} 
         style={styles.viewContent}>
           <Image
-          source={require('../image/logo-9.png')}
+          source={require('../image/logo.png')}
           style={styles.logoImg}
           />
           <Text style={styles.textContent}>YukiNovel - Read novel online</Text>
