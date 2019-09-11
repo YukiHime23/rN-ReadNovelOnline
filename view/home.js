@@ -65,7 +65,7 @@ export default class home extends Component {
                 <Text style={styles.txtMore}> More >></Text>
                 <Button
                   title="Go to Details"
-                  onPress={() => this.props.navigation.navigate('Details')}
+                  onPress={() => this.props.navigation.navigate('DetailNovel')}
                 />
               </View>
               <FlatList

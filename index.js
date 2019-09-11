@@ -11,8 +11,8 @@ import login from './view/login/login';
 import home from './view/home';
 import detail from './view/detailNovel';
 
-// import mainNavigator from './view/navigationAdapter/navigatorMain';
+import mainNavigator from './routers/navAdaptor';
 
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => mainNavigator);
