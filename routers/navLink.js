@@ -1,6 +1,6 @@
 import { createStackNavigator ,createBottomTabNavigator} from 'react-navigation-stack'
 import Home from './..//view/home'
-import DetailNovel from './..//view/detailNovel'
+import More from './..//view/moreNovel'
 
 const AppNavigator = createStackNavigator({
 	Home: {
@@ -9,8 +9,8 @@ const AppNavigator = createStackNavigator({
       header: null,
     },
   },
-  DetailNovel: {
-    screen: DetailNovel,
+  More: {
+    screen: More,
     navigationOptions: {
       header: null,
     },

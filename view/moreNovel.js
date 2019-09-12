@@ -23,7 +23,7 @@ import {
 } from 'react-native';
 import styles from './../styleSheet/stylesDetail';
 
-export default class detailNovel extends Component {
+export default class moreNovel extends Component {
   constructor(props) {
     super(props);
     this.state = {

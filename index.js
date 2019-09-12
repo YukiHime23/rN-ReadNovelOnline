@@ -9,7 +9,6 @@ import horizontalView from './view/component/horizontalView';
 
 import login from './view/login/login';
 import home from './view/home';
-import detail from './view/detailNovel';
 
 import mainNavigator from './routers/navAdaptor';
 

@@ -62,11 +62,11 @@ export default class home extends Component {
             <View style={styles.viewList}>
               <View style={styles.viewTitleList}>
                 <Text style={styles.txtTitle}> ~ Top novel</Text>
-                <Text style={styles.txtMore}> More >></Text>
-                <Button
-                  title="Go to Details"
-                  onPress={() => this.props.navigation.navigate('DetailNovel')}
-                />
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate('More')}
+                >
+                  <Text style={styles.txtMore}> More >></Text>
+                </TouchableOpacity>
               </View>
               <FlatList
                 data={FlatListData}
@@ -83,7 +83,7 @@ export default class home extends Component {
               <View style={styles.viewTitleList}>
                 <Text style={styles.txtTitle}> ~ New novel</Text>
                 <TouchableOpacity
-                  onPress={()=>navigate('Detail')}
+                  onPress={() => this.props.navigation.navigate('More')}
                 >
                   <Text style={styles.txtMore}> More >></Text>
                 </TouchableOpacity>
@@ -102,7 +102,11 @@ export default class home extends Component {
             <View style={styles.viewList}>
               <View style={styles.viewTitleList}>
                 <Text style={styles.txtTitle}> ~ Complete novel</Text>
-                <Text style={styles.txtMore}> More >></Text>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate('More')}
+                >
+                  <Text style={styles.txtMore}> More >></Text>
+                </TouchableOpacity>
               </View>
               <FlatList
                 data={FlatListData}
