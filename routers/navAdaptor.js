@@ -1,5 +1,5 @@
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
-// import AuthNavigator from 'libraries/components/AuthTemplate/Airbnb/AuthNavigator';
+
 import Link from './navLink';
 
 const mainStack = createSwitchNavigator({
