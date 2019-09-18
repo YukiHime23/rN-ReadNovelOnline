@@ -22,7 +22,7 @@ import {
   Dimensions,
 } from 'react-native';
 import styles from './../styleSheet/stylesHome';
-import FlatListItem from './itemTheme';
+import FlatListItem from './itemNovel';
 import FlatListData from './../requestApi/listNovel';
 
 export default class home extends Component {

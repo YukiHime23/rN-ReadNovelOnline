@@ -8,12 +8,13 @@
 
 import React, {Component} from 'react';
 import { FlatList, ActivityIndicator, Text, View, StyleSheet, Button } from 'react-native';
+// import cheerio from 'react-native-cheerio'
 
 export default class home extends Component{
   
   getDataUsingGet() {
     //GET request
-    fetch('http://ln.hako.re', {
+    fetch(urlWeb, {
       method: 'GET',
       //Request Type
     })
@@ -21,7 +22,12 @@ export default class home extends Component{
       //If response is in json then in success
       .then(text => {
         //Success
-        alert(text);
+        const $ = cheerio.load(text);
+        // const x = $('body #mainpart .container .row').eq(1).children().html();
+        // const x = $('main .container').html();
+        // const x = $('.thumb-wrapper a').attr('href');
+        const x = $('.thumb-wrapper a').data();
+        alert(x);
         console.log(text);
       })
       //If response is not in json then in error
@@ -49,3 +55,5 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
+const urlWeb = 'http://ln.hako.re';
+const cheerio = require('react-native-cheerio');
