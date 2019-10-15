@@ -13,42 +13,110 @@ import {
   Text, 
   View,
   StatusBar,
-  TextInput,
   TouchableOpacity,
   ScrollView,
   FlatList,
   ImageBackground,
   Image,
   Dimensions,
+  TouchableHighlight,
 } from 'react-native';
-import styles from './../styleSheet/stylesHome';
+import css          from './../styleSheet/stylesMain';
+import styles       from './../styleSheet/stylesHome';
 import FlatListItem from './itemNovel';
-import FlatListData from './../requestApi/listNovel';
 
 export default class home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      dataNewChap:[],
+      dataCompose:[],
     };
+    this.getDataUsingGet = this.getDataUsingGet.bind(this);
   }
+  componentDidMount() {
+    this.getDataUsingGet();
+  }
+  getDataUsingGet() {
+    //GET request
+    fetch(urlWeb, {
+      method: 'GET',
+      //Request Type
+    })
+    .then(response => response.text())
+    //If response is in json then in success
+    .then((text) => {
+      //Success
+      const $ = cheerio.load(text);
+      const container1 = $('main#mainpart div.container').eq(1);
+      const section1 = $('section.index-section',container1).eq(0);
+      const section2 = $('section.index-section',container1).eq(1);
+      let json1 = [];
+      $('main.row',section1).find('div.thumb-item-flow').each((i, el) => {
+        let x={};
+        x['newChapTitle'] = $(el).find('.thumb-wrapper').find('a').attr('title');
+        x['newChapHref'] = $(el).find('.thumb-wrapper').find('a').attr('href');
+        x['volumeTitle'] = $(el).find('.thumb-wrapper').find('.thumb-detail').find('.volume-title').text();
+        x['novelTitle'] = $(el).find('.series-title').find('a').attr('title');
+        x['novelHref'] = $(el).find('.series-title').find('a').attr('href');
+        x['imageUrl'] = $(el).find('.a6-ratio').find('div').css('background-image').replace(/(?:^url\(["']?|["']?\)$)/g, "");
+        json1.push(x);
+      })
+      this.setState({dataNewChap: json1});
+
+      let json2 = [];
+      $('main.row',section2).find('div.thumb-item-flow').each((i, el) => {
+        let x={};
+        x['newChapTitle'] = $(el).find('.thumb-wrapper').find('a').attr('title');
+        x['newChapHref'] = $(el).find('.thumb-wrapper').find('a').attr('href');
+        x['volumeTitle'] = $(el).find('.thumb-wrapper').find('.thumb-detail').find('.volume-title').text();
+        x['novelTitle'] = $(el).find('.series-title').find('a').attr('title');
+        x['novelHref'] = $(el).find('.series-title').find('a').attr('href');
+        x['imageUrl'] = $(el).find('.a6-ratio').find('div').css('background-image').replace(/(?:^url\(["']?|["']?\)$)/g, "");
+        json2.push(x);
+      })
+      this.setState({dataCompose: json2});
+    })
+    //If response is not in json then in error
+    .catch(error => {
+      //Error
+      alert(JSON.stringify(error));
+      console.error(error);
+    });
+  }
+  // clickBackToTop(){
+  //   this.scroll.scrollTo({x: 0, y: 0, animated: true});
+  // }
+  // backToTop(){
+  //   return (<TouchableOpacity
+  //             activeOpacity={0.7}
+  //             onPress={this.clickBackToTop}
+  //             style={css.TouchableOpacityStyle}>
+  //             <Image
+  //                source={{uri:'https://raw.githubusercontent.com/AboutReact/sampleresource/master/plus_icon.png',
+  //               }}
+  //               style={css.FloatingButtonStyle}
+  //             />
+  //           </TouchableOpacity>)
+  // }
+
   render() {
     return (
-      <View style={styles.viewMain}>
+      <View style={css.viewMain}>
         <StatusBar hidden={true} />
 
         {/* This is the title of the application */}
         <ImageBackground source={{uri:'https://get.wallhere.com/photo/white-black-monochrome-dark-texture-atmosphere-light-background-line-surface-darkness-spots-computer-wallpaper-black-and-white-monochrome-photography-701877.jpg'}} 
-        style={styles.viewContent}>
+        style={css.viewContent}>
           <Image
           source={require('../image/logo.png')}
-          style={styles.logoImg}
+          style={css.logoImg}
           />
-          <Text style={styles.textContent}>NyanNovel - Read novel online</Text>
+          <Text style={css.textContent}>NyanNovel - Read novel online</Text>
         </ImageBackground>
 
         {/* This is the body of the application */}
-        <View style={styles.viewBody}>
+        <View style={css.viewBody}>
           <ScrollView>
             {/* This is the slider of the body */}
             <View style={{height:100,backgroundColor:'black'}}>
@@ -58,61 +126,49 @@ export default class home extends Component {
               />
             </View>
 
-            {/* This is the flatlist novel of the body */}
+            {/* This is the flatlist New Chap novel of the body */}
             <View style={styles.viewList}>
               <View style={styles.viewTitleList}>
-                <Text style={styles.txtTitle}> ~ Top novel</Text>
+                <Text style={styles.txtTitle}> ~ New Chapter</Text>
                 <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate('More')}
+                  onPress={() => this.props.navigation.navigate('MoreNovel')}
                 >
                   <Text style={styles.txtMore}> More >></Text>
                 </TouchableOpacity>
-              </View>
+              </View> 
               <FlatList
-                data={FlatListData}
+                data={this.state.dataNewChap.slice(0, -1)}
                 renderItem={({item,index})=>{
                   return (
-                    <FlatListItem item={item} index={index}></FlatListItem>
+                    <TouchableHighlight
+                      onPress={() => this.props.navigation.navigate('DetailNovel',{item: item})}
+                    >
+                      <FlatListItem item={item} index={index}></FlatListItem>
+                    </TouchableHighlight>           
                   )
                 }}
               />
             </View>
 
-            {/* This is the flatlist novel of the body */}
+            {/* This is the flatlist New novel of the body */}
             <View style={styles.viewList}>
               <View style={styles.viewTitleList}>
-                <Text style={styles.txtTitle}> ~ New novel</Text>
+                <Text style={styles.txtTitle}> ~ Compose novel</Text>
                 <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate('More')}
+                  onPress={() => this.props.navigation.navigate('MoreNovel')}
                 >
                   <Text style={styles.txtMore}> More >></Text>
                 </TouchableOpacity>
               </View>
               <FlatList
-                data={FlatListData}
+                data={this.state.dataCompose.slice(0, -1)}
                 renderItem={({item,index})=>{
                   return (
-                    <FlatListItem item={item} index={index}></FlatListItem>
-                  )
-                }}
-              />
-            </View>
-            
-            {/* This is the flatlist novel of the body */}
-            <View style={styles.viewList}>
-              <View style={styles.viewTitleList}>
-                <Text style={styles.txtTitle}> ~ Complete novel</Text>
-                <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate('More')}
-                >
-                  <Text style={styles.txtMore}> More >></Text>
-                </TouchableOpacity>
-              </View>
-              <FlatList
-                data={FlatListData}
-                renderItem={({item,index})=>{
-                  return (
-                    <FlatListItem item={item} index={index}></FlatListItem>
+                    <TouchableHighlight
+                      onPress={() => this.props.navigation.navigate('DetailNovel',{item: item})}
+                    >
+                      <FlatListItem item={item} index={index}></FlatListItem>
+                    </TouchableHighlight>      
                   )
                 }}
               />
@@ -132,4 +188,6 @@ export default class home extends Component {
   }
 }
 
+const urlWeb = 'https://ln.hako.re/';
+const cheerio = require('react-native-cheerio');
 // adb shell input keyevent 82

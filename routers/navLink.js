@@ -1,6 +1,10 @@
 import { createStackNavigator ,createBottomTabNavigator} from 'react-navigation-stack'
 import Home from './..//view/home'
-import More from './..//view/moreNovel'
+import MoreNovel from './..//view/moreNovel'
+import DetailNovel from './..//view/detailNovel'
+import ListChap from './..//view/listChapInVolume'
+import ChapNovel from './..//view/chapNovel'
+import ReadChap from './..//view/readChap'
 
 const AppNavigator = createStackNavigator({
 	Home: {
@@ -9,8 +13,32 @@ const AppNavigator = createStackNavigator({
       header: null,
     },
   },
-  More: {
-    screen: More,
+  MoreNovel: {
+    screen: MoreNovel,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  DetailNovel:{
+    screen: DetailNovel,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  ListChap:{
+    screen: ListChap,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  ChapNovel:{
+    screen: ChapNovel,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  ReadChap:{
+    screen: ReadChap,
     navigationOptions: {
       header: null,
     },

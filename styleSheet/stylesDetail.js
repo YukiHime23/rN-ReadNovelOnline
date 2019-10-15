@@ -3,56 +3,46 @@ const widthDevice = Dimensions.get('window').width;
 const heightDevice = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
-  viewMain:{
+  mainDetail:{
     flex:1,
-    width: '100%',
-    height: '100%',
-    // alignItems:'center',
+    borderBottomWidth:2,
+    borderBottomColor:'crimson',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  viewContent:{
-    flex:40,
-    flexDirection: 'row',
-    justifyContent:'space-between',    
+  imgNovel: {
+    width:160,
+    height:220,
+    margin:10,
   },
-  textContent: {
-    // shadowColor:'white',
-    color:'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-    paddingRight:15,
-    paddingTop:10,
-  },
-  logoImg: {
-    width:35,
-    height:30,
-    marginLeft:10,
-    marginTop:3,
-  },
-  viewBody:{
-    flex:heightDevice-40,
-  },
-  viewList: {
-    // marginBottom:10,
-  },
-  viewTitleList:{
-    flexDirection: 'row',
-    backgroundColor:'firebrick',
-    justifyContent:'space-between',    
+  info:{
+    flex:1,
+    flexDirection: 'column',
+    margin:10,
   },
   txtTitle:{
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: 'bold',
-    paddingBottom:5,
-    paddingTop:5,
-    color:'white',
   },
-  txtMore:{
-    fontSize: 13,
-    fontStyle: 'italic',
-    paddingBottom:5,
-    paddingTop:5,
-    paddingRight:5,
-    color:'white',
+  txtTitleSmall:{
+    fontSize: 15,
+  },
+  txtInfoChild:{
+    fontSize: 14,
+    fontStyle:'italic',
+    marginTop:5,
+  },
+  listVolume:{
+    flex:1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 5,
+  },
+  txtChapChild:{
+    margin:10,
+    width: widthDevice/2,
   }
 }); 
 export default styles;

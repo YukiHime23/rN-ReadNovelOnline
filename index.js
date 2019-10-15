@@ -6,7 +6,7 @@ import {AppRegistry} from 'react-native';
 import App from './App';
 
 import login from './view/login/login';
-import home from './view/home';
+import chapNovel from './view/chapNovel';
 
 import mainNavigator from './routers/navAdaptor';
 
