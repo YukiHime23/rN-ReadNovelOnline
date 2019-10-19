@@ -89,7 +89,7 @@ export default class home extends Component {
   renContent(){
     while(this.state.content.length){
       return this.state.content[0].text.map((item,index) => (
-              <Text>
+              <Text style={{fontSize: 16}}>
                   <Text>{item.p}{"\n"}</Text>
               </Text>
             ))
